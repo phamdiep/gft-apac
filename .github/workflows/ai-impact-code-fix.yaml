@@ -1,0 +1,16 @@
+name: GFT AI Impact Code Fix
+on:
+  push:
+    branches: 
+      - develop
+jobs: 
+  build: 
+    name: Run Code Fix
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
+      - name: Run GFT AI Impact CLI
+        run: | 
+          gft codefix --config_path /app/config.yml

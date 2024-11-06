@@ -1,0 +1,17 @@
+name: GFT AI Impact Code Review
+on:
+  pull_request:
+    branches: 
+      - develop
+      - release/*
+jobs: 
+  build: 
+    name: Run Code Review
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
+      - name: Run GFT AI Impact CLI
+        run: | 
+          gft codereview --config_path /app/config.yml --pullnumber ${{github.event.pull_request.number}}
